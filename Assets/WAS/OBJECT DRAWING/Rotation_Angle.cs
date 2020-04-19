@@ -5,7 +5,6 @@ using Leap.Unity;
 public class Rotation_Angle : MonoBehaviour {
 
     public GameObject Color_Selection_Object;
-    Controller controller;
 
     public  float [] rotation;
 
@@ -15,7 +14,6 @@ public class Rotation_Angle : MonoBehaviour {
 	void Start () {
 
         menuVector = Color_Selection_Object.transform.position;
-        controller = new Controller();
 	}
 
 
@@ -30,7 +28,7 @@ public class Rotation_Angle : MonoBehaviour {
             pinkyVector = GameObject.Find("Bip01 R Finger057").transform.position;
         }
 
-        Frame frame = controller.Frame();
+        Frame frame = Gesture_Recognition.Instance.leap_motion_controller.Frame();
         Hand left=frame.Hands.Leftmost;
 
 

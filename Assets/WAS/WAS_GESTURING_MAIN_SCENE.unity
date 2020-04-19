@@ -749,7 +749,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b498691e14cdc4f8abb0c4c4afb64fb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Line_Renderer: {fileID: 2086467831}
+  Line_Renderer: {fileID: 0}
   index_middle_distance: 0
   index_ring_distance: 0
   index_pinky_distance: 0
@@ -859,7 +859,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba7a555a1697b414cab89dfb7180a169, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  viewer: {fileID: 1086754420}
+  viewer: {fileID: 0}
   horizontal: 
   vertical: 
 --- !u!114 &2086467836
@@ -874,7 +874,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bcb136fc40634c81bd2fb3e2abed29c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Color_Selection_Object: {fileID: 44762575}
+  Color_Selection_Object: {fileID: 0}
   rotation: []
 --- !u!114 &2086467837
 MonoBehaviour:
@@ -893,3 +893,5 @@ MonoBehaviour:
   TYPE_CIRCLE_ACTIVE: 0
   CIRCLE_DIR_MODE: 0
   RADIUS: 0
+  TYPE_SCREEN_TAP_ACTIVE: 0
+  TYPE_KEY_TAP_ACTIVE: 0

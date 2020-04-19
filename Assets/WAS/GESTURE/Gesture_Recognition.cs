@@ -30,7 +30,7 @@ public class Gesture_Recognition : MonoBehaviour
     }
 
     //Hand Controller
-    private Controller leap_motion_controller = new Controller();
+    public Controller leap_motion_controller = new Controller();
 
     //Leap motion frame
     private Frame leap_motion_frame;

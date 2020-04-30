@@ -47,7 +47,8 @@ public class Gesture_Recognition : MonoBehaviour
     public bool                  TYPE_CIRCLE_ACTIVE = false ;
     public Circle_Direction_Mode CIRCLE_DIR_MODE            ;
     public double                RADIUS                     ;
-    public Vector                CENTER_POINT               ;
+    public Vector3               CENTER_POINT               ;
+    public float                 CIRCLE_PROGRESS            ;
     #endregion
 
     #region TYPE SCREEN TAP VARIABLES
@@ -55,7 +56,10 @@ public class Gesture_Recognition : MonoBehaviour
     #endregion
 
     #region TYPE TAP KEY VARIABLES
-    public bool                  TYPE_KEY_TAP_ACTIVE    = false;
+    public bool                  TYPE_KEY_TAP_ACTIVE       = false ;
+    public Vector3               KEY_TARGET_POINT                  ;
+    public bool                  KEY_TARGET_DRAWING_FINISH = false ;
+    public int                   KEY_TARGET_ID             = 0     ;
     #endregion
 
     // Start is called before the first frame update
@@ -143,8 +147,9 @@ public class Gesture_Recognition : MonoBehaviour
                         CircleGesture circle_gesture = new CircleGesture(gesture);
 
                         // Crucial parameters such as radius, speed, turn type
-                        RADIUS       = circle_gesture.Radius;
-                        CENTER_POINT = circle_gesture.Center;
+                        RADIUS          = circle_gesture.Radius / 100;
+                        CENTER_POINT    = GameObject.Find("index/bone1").transform.position;
+                        CIRCLE_PROGRESS = circle_gesture.Progress;
 
                         // Circle dir.
                         if (circle_gesture.Pointable.Direction.AngleTo(circle_gesture.Normal) <= Math.PI / 2)
@@ -182,6 +187,8 @@ public class Gesture_Recognition : MonoBehaviour
 
                         // current catched gesture is gonna be key tap
                         current_gesture_mode = Gesture_Modes.HAND_KEY_TAP;
+                        KEY_TARGET_POINT     = GameObject.Find("index/bone1").transform.position;
+                        KEY_TARGET_ID++;
 
                         // Tyoe key tap flag is gonna be active
                         TYPE_KEY_TAP_ACTIVE = true;

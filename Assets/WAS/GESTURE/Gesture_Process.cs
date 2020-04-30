@@ -92,6 +92,9 @@ public class Gesture_Process : MonoBehaviour
 
             survaillence_targets_list.Add(survaillence_target);
 
+            // Push database
+            Database_Process.Add_Target_Into_Database(survaillence_target);
+
             // Release the circle mode after finish.
             gesture_recognition.TYPE_CIRCLE_ACTIVE = false;
 

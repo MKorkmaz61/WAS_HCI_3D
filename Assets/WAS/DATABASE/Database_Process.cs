@@ -17,7 +17,7 @@ public static class Database_Process
         Task.Run(() => { Push_Database(survaillence_target); });
     }
 
-    public static async Task Push_Database(Survaillence_Target survaillence_target)
+    private static async Task Push_Database(Survaillence_Target survaillence_target)
     {
         var json     = JsonConvert.SerializeObject(survaillence_target);
         var data     = new StringContent(json, Encoding.UTF8, "application/json");

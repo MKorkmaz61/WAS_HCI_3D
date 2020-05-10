@@ -116,11 +116,39 @@ public class Gesture_Process : MonoBehaviour
             gesture_recognition.TYPE_KEY_TAP_ACTIVE = false;
         }
 
-        if (gesture_recognition.KEY_TARGET_DRAWING_FINISH == false )
+        // Detecting thumb to finish tap target process.
+
+        if (gesture_recognition.THUMBS_UP_ACTIVE == true)
         {
+            if (gesture_recognition.TARGET_TAP_LIST.Count > 2)
+            {
+                GameObject tap_target_object  = new GameObject();
+                LineRenderer line_renderer    = tap_target_object.AddComponent<LineRenderer>();
+                line_renderer.useWorldSpace   = false;
+                line_renderer.positionCount   = gesture_recognition.TARGET_TAP_LIST.Count + 1;
+                line_renderer.widthMultiplier = .1f;
+
+                // Draw line using positions
+                for (int i = 0; i < line_renderer.positionCount; i++)
+                {
+                    if (i == line_renderer.positionCount - 1)
+                    {
+                        line_renderer.SetPosition(i, gesture_recognition.TARGET_TAP_LIST[0]);
+                    }
+                    else
+                    {
+                        line_renderer.SetPosition(i, gesture_recognition.TARGET_TAP_LIST[i]);
+                    }
+                }
+
+                // Clear list
+                gesture_recognition.TARGET_TAP_LIST.Clear();
+            }
 
 
+            gesture_recognition.THUMBS_UP_ACTIVE = false;
         }
+
         #endregion
 
 

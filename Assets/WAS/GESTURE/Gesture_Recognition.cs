@@ -60,6 +60,14 @@ public class Gesture_Recognition : MonoBehaviour
     public Vector3               KEY_TARGET_POINT                  ;
     public bool                  KEY_TARGET_DRAWING_FINISH = false ;
     public int                   KEY_TARGET_ID             = 0     ;
+    public List<Vector3>         TARGET_TAP_LIST           = new List<Vector3>();
+
+    // Thumbs up chechking
+    public float                 THUMB_INDEX_DISTANCE      = 0f;
+    public float                 THUMB_MIDDLE_DISTANCE     = 0f;
+    public float                 THUMB_RING_DISTANCE       = 0f;
+    public float                 THUMB_PINKY_DISTANCE      = 0f;
+    public bool                  THUMBS_UP_ACTIVE          = false;
     #endregion
 
     // Start is called before the first frame update
@@ -80,6 +88,8 @@ public class Gesture_Recognition : MonoBehaviour
     {
         // Getting current frame
         leap_motion_frame = leap_motion_controller.Frame();
+
+        Debug.Log(leap_motion_frame.Fingers[0].Direction + "-" + leap_motion_frame.Fingers[1].Direction + "-"+ leap_motion_frame.Fingers[2].Direction);
 
         // Getting gesture
         GestureList gesture_list = leap_motion_frame.Gestures();
@@ -189,6 +199,7 @@ public class Gesture_Recognition : MonoBehaviour
                         current_gesture_mode = Gesture_Modes.HAND_KEY_TAP;
                         KEY_TARGET_POINT     = GameObject.Find("index/bone1").transform.position;
                         KEY_TARGET_ID++;
+                        TARGET_TAP_LIST.Add(KEY_TARGET_POINT);
 
                         // Tyoe key tap flag is gonna be active
                         TYPE_KEY_TAP_ACTIVE = true;
@@ -200,5 +211,30 @@ public class Gesture_Recognition : MonoBehaviour
 
         }
 
+        // Check thumb signal
+        Check_Thumb_Signal_Active();
+
+    }
+
+    private void Check_Thumb_Signal_Active()
+    {
+        GameObject index_object  = GameObject.Find("index/bone3");
+        GameObject thumb_object  = GameObject.Find("thumb/bone3");
+        GameObject middle_object = GameObject.Find("middle/bone3");
+        GameObject pinky_object  = GameObject.Find("pinky/bone3");
+        GameObject ring_object   = GameObject.Find("ring/bone3");
+
+        if (thumb_object != null)
+        {
+            THUMB_INDEX_DISTANCE  = Vector3.Distance(thumb_object.transform.position, index_object.transform.position);
+            THUMB_MIDDLE_DISTANCE = Vector3.Distance(thumb_object.transform.position, middle_object.transform.position);
+            THUMB_RING_DISTANCE   = Vector3.Distance(thumb_object.transform.position, ring_object.transform.position);
+            THUMB_PINKY_DISTANCE  = Vector3.Distance(thumb_object.transform.position, pinky_object.transform.position);
+
+            if (THUMB_INDEX_DISTANCE >= 1.8 && THUMB_MIDDLE_DISTANCE > 2f && THUMB_RING_DISTANCE >= 2.1f && THUMB_PINKY_DISTANCE >= 2.3f)
+            {
+                THUMBS_UP_ACTIVE = true;
+            }
+        }
     }
 }

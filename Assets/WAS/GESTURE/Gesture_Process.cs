@@ -14,6 +14,9 @@ public class Gesture_Process : MonoBehaviour
     public  Sprite                    KEY_TARGET_POINT_SPRITE;
     public  Object_Selection          object_selection;
 
+    // UI process
+    private UI_Process current_UI_process;
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -21,6 +24,9 @@ public class Gesture_Process : MonoBehaviour
         gesture_recognition = gameObject.GetComponent<Gesture_Recognition>();
         object_selection    = gameObject.GetComponent<Object_Selection>();
         StartCoroutine(Update_1Hz_Machine());
+
+        // Gest UI process
+        current_UI_process = gameObject.GetComponent<UI_Process>();
     }
 
 
@@ -151,6 +157,54 @@ public class Gesture_Process : MonoBehaviour
 
 
             gesture_recognition.THUMBS_UP_ACTIVE = false;
+        }
+
+        #endregion
+
+        #region SWIPE PROCESS
+        if (gesture_recognition.TYPE_SWIPE_ACTIVE == true)
+        {
+            // Determine direction of swipe
+            switch (gesture_recognition.CURRENT_SWIPE_MODES)
+            {
+                case Swipe_Modes.SWIPE_LEFT:
+                    {
+                        current_UI_process.Start_Gesture_Notification_Panel(Notifications.HAND_SWIPE_LEFT);
+                        break;
+                    }
+                case Swipe_Modes.SWIPE_RIGHT:
+                    {
+                        current_UI_process.Start_Gesture_Notification_Panel(Notifications.HAND_SWIPE_RIGHT);
+
+                        break;
+                    }
+                case Swipe_Modes.SWIPE_UP:
+                    {
+                        // TO DO
+
+                        break;
+                    }
+                case Swipe_Modes.SWIPE_DOWN:
+                    {
+                        // TO DO
+
+                        break;
+                    }
+                case Swipe_Modes.SWIPE_INVALID:
+                    {
+                        // TO DO
+
+                        break;
+                    }
+                default:
+                    {
+                        // TO DO
+
+                        break;
+                    }
+            }
+
+            gesture_recognition.TYPE_SWIPE_ACTIVE = false;
         }
 
         #endregion

@@ -39,7 +39,8 @@ public class Gesture_Recognition : MonoBehaviour
     public Gesture_Modes current_gesture_mode = Gesture_Modes.INVALID_TYPE;
 
     #region TYPE SWIPE VARIABLES
-    public bool TYPE_SWIPE_ACTIVE = false;
+    public bool        TYPE_SWIPE_ACTIVE   = false;
+    public Swipe_Modes CURRENT_SWIPE_MODES = Swipe_Modes.SWIPE_INVALID;
 
     #endregion
 

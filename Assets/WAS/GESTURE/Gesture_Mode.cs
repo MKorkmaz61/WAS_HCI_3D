@@ -15,6 +15,15 @@ public enum Gesture_Modes
     INVALID_TYPE
 }
 
+public enum Swipe_Modes
+{
+    SWIPE_LEFT,
+    SWIPE_RIGHT,
+    SWIPE_UP,
+    SWIPE_DOWN,
+    SWIPE_INVALID
+}
+
 public enum Circle_Direction_Mode
 {
     CLOCKWISE,

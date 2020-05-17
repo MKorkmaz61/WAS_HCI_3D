@@ -33,7 +33,7 @@ public class Gesture_Recognition : MonoBehaviour
     public Controller leap_motion_controller = new Controller();
 
     //Leap motion frame
-    private Frame leap_motion_frame;
+    public Frame leap_motion_frame;
 
     // Current gesture type from enum
     public Gesture_Modes current_gesture_mode = Gesture_Modes.INVALID_TYPE;

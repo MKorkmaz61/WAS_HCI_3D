@@ -146,7 +146,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -24.9, y: -13.6}
+  m_AnchoredPosition: {x: -23.46, y: -13.6}
   m_SizeDelta: {x: 15.1, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &43934929
@@ -167,7 +167,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 329e4ecea19234e2c9dcd0f018b1572b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: acfb9956b005c4848bcbeeefccbf1185, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1031,7 +1031,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0.5754717, g: 0.16558382, b: 0.23637456, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -1072,6 +1072,7 @@ GameObject:
   - component: {fileID: 2086467837}
   - component: {fileID: 2086467834}
   - component: {fileID: 2086467835}
+  - component: {fileID: 2086467838}
   m_Layer: 0
   m_Name: Script_Manager
   m_TagString: Untagged
@@ -1189,3 +1190,19 @@ MonoBehaviour:
   THUMB_PINKY_DISTANCE: 0
   THUMBS_UP_ACTIVE: 0
   INDEX_FINGER_POS: {x: 0, y: 0, z: 0}
+--- !u!114 &2086467838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2086467831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43fd5212fc2094116909015c8d0938f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  left_hand_detected_image: {fileID: 597412531}
+  right_hand_detected_image: {fileID: 1864901975}
+  clock_type_text: {fileID: 1893147680}
+  gesture_recognition: {fileID: 0}

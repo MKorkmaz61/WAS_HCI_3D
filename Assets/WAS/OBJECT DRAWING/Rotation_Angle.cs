@@ -5,16 +5,18 @@ using Leap.Unity;
 public class Rotation_Angle : MonoBehaviour {
 
     public GameObject Color_Selection_Object;
+    public Object_Selection object_selection;
 
     public  float [] rotation;
 
     Vector3 pinkyVector,menuVector;
     public static bool flag;
 	// Use this for initialization
-	void Start () {
-
-        menuVector = Color_Selection_Object.transform.position;
-	}
+	void Start ()
+    {
+        menuVector       = Color_Selection_Object.transform.position;
+        object_selection = gameObject.GetComponent<Object_Selection>();
+    }
 
 
 	
@@ -64,8 +66,10 @@ public class Rotation_Angle : MonoBehaviour {
         {
             flag = false;
 
-            Color_Selection_Object.transform.position = menuVector;
-
+            if (object_selection.object_selection_mode == false)
+            {
+                Color_Selection_Object.transform.position = menuVector;
+            }
 
         }
 

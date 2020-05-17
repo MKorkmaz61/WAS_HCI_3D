@@ -70,6 +70,11 @@ public class Gesture_Recognition : MonoBehaviour
     public bool                  THUMBS_UP_ACTIVE          = false;
     #endregion
 
+    #region Finger Points
+    public Vector3               INDEX_FINGER_POS                 ;
+    #endregion
+
+
     // Start is called before the first frame update
     private void Start()
     {
@@ -88,8 +93,6 @@ public class Gesture_Recognition : MonoBehaviour
     {
         // Getting current frame
         leap_motion_frame = leap_motion_controller.Frame();
-
-        Debug.Log(leap_motion_frame.Fingers[0].Direction + "-" + leap_motion_frame.Fingers[1].Direction + "-"+ leap_motion_frame.Fingers[2].Direction);
 
         // Getting gesture
         GestureList gesture_list = leap_motion_frame.Gestures();
@@ -224,9 +227,13 @@ public class Gesture_Recognition : MonoBehaviour
         GameObject pinky_object  = GameObject.Find("pinky/bone3");
         GameObject ring_object   = GameObject.Find("ring/bone3");
 
+        // Assign index finger
+
         if (thumb_object != null)
         {
-            THUMB_INDEX_DISTANCE  = Vector3.Distance(thumb_object.transform.position, index_object.transform.position);
+            INDEX_FINGER_POS = index_object.transform.position;
+
+            THUMB_INDEX_DISTANCE = Vector3.Distance(thumb_object.transform.position, index_object.transform.position);
             THUMB_MIDDLE_DISTANCE = Vector3.Distance(thumb_object.transform.position, middle_object.transform.position);
             THUMB_RING_DISTANCE   = Vector3.Distance(thumb_object.transform.position, ring_object.transform.position);
             THUMB_PINKY_DISTANCE  = Vector3.Distance(thumb_object.transform.position, pinky_object.transform.position);

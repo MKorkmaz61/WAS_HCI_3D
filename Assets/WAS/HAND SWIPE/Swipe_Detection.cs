@@ -32,8 +32,6 @@ public class Swipe_Detection : MonoBehaviour
 
                 direction = swipe_gesture.Direction;
 
-                Debug.Log(direction.ToString());
-
                 // X axis
                 if (direction.x < 0)
                 {

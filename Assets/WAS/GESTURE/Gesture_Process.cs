@@ -12,12 +12,14 @@ public class Gesture_Process : MonoBehaviour
     private List<Survaillence_Target> survaillence_targets_list = new List<Survaillence_Target>();
     private const Int32               UPDATE_MACHINE_LOOP_HZ    = 1;
     public  Sprite                    KEY_TARGET_POINT_SPRITE;
+    public  Object_Selection          object_selection;
 
     // Start is called before the first frame update
     private void Start()
     {
         // Get object from singleton class
         gesture_recognition = gameObject.GetComponent<Gesture_Recognition>();
+        object_selection    = gameObject.GetComponent<Object_Selection>();
         StartCoroutine(Update_1Hz_Machine());
     }
 
@@ -106,11 +108,13 @@ public class Gesture_Process : MonoBehaviour
         if (gesture_recognition.TYPE_KEY_TAP_ACTIVE == true)
         {
             // KEY TAP PROCESS
-            GameObject      key_target_object       = new GameObject();
-            SpriteRenderer  sprite_renderer         = key_target_object.AddComponent<SpriteRenderer>();
-            sprite_renderer.sprite                  = KEY_TARGET_POINT_SPRITE;
-            key_target_object.transform.localScale  = new Vector3(.3f, .3f, .3f);
-            key_target_object.transform.position    = gesture_recognition.KEY_TARGET_POINT;
+            //GameObject      key_target_object       = new GameObject();
+            //SpriteRenderer  sprite_renderer         = key_target_object.AddComponent<SpriteRenderer>();
+            //sprite_renderer.sprite                  = KEY_TARGET_POINT_SPRITE;
+            //key_target_object.transform.localScale  = new Vector3(.3f, .3f, .3f);
+            //key_target_object.transform.position    = gesture_recognition.KEY_TARGET_POINT;
+
+            object_selection.Draw_Sphere_From_Selected_Object();
 
 
             gesture_recognition.TYPE_KEY_TAP_ACTIVE = false;
@@ -120,30 +124,30 @@ public class Gesture_Process : MonoBehaviour
 
         if (gesture_recognition.THUMBS_UP_ACTIVE == true)
         {
-            if (gesture_recognition.TARGET_TAP_LIST.Count > 2)
-            {
-                GameObject tap_target_object  = new GameObject();
-                LineRenderer line_renderer    = tap_target_object.AddComponent<LineRenderer>();
-                line_renderer.useWorldSpace   = false;
-                line_renderer.positionCount   = gesture_recognition.TARGET_TAP_LIST.Count + 1;
-                line_renderer.widthMultiplier = .1f;
+            //if (gesture_recognition.TARGET_TAP_LIST.Count > 2)
+            //{
+            //    GameObject tap_target_object  = new GameObject();
+            //    LineRenderer line_renderer    = tap_target_object.AddComponent<LineRenderer>();
+            //    line_renderer.useWorldSpace   = false;
+            //    line_renderer.positionCount   = gesture_recognition.TARGET_TAP_LIST.Count + 1;
+            //    line_renderer.widthMultiplier = .1f;
 
-                // Draw line using positions
-                for (int i = 0; i < line_renderer.positionCount; i++)
-                {
-                    if (i == line_renderer.positionCount - 1)
-                    {
-                        line_renderer.SetPosition(i, gesture_recognition.TARGET_TAP_LIST[0]);
-                    }
-                    else
-                    {
-                        line_renderer.SetPosition(i, gesture_recognition.TARGET_TAP_LIST[i]);
-                    }
-                }
+            //    // Draw line using positions
+            //    for (int i = 0; i < line_renderer.positionCount; i++)
+            //    {
+            //        if (i == line_renderer.positionCount - 1)
+            //        {
+            //            line_renderer.SetPosition(i, gesture_recognition.TARGET_TAP_LIST[0]);
+            //        }
+            //        else
+            //        {
+            //            line_renderer.SetPosition(i, gesture_recognition.TARGET_TAP_LIST[i]);
+            //        }
+            //    }
 
-                // Clear list
-                gesture_recognition.TARGET_TAP_LIST.Clear();
-            }
+            //    // Clear list
+            //    gesture_recognition.TARGET_TAP_LIST.Clear();
+            //}
 
 
             gesture_recognition.THUMBS_UP_ACTIVE = false;

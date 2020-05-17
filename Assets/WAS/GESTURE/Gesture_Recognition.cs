@@ -116,27 +116,13 @@ public class Gesture_Recognition : MonoBehaviour
                         {
                             // Swipe right
                             current_gesture_mode = Gesture_Modes.HAND_SWIPE_RIGHT;
+                            CURRENT_SWIPE_MODES  = Swipe_Modes.SWIPE_RIGHT; 
                         }
                         else if (swipe_direction.x < 0)
                         {
                             // Swipe left
                             current_gesture_mode = Gesture_Modes.HAND_SWIPE_LEFT;
-                        }
-                        else
-                        {
-                            // Does not matter
-                        }
-
-                        // Controlling y axis
-                        if (swipe_direction.y > 0)
-                        {
-                            // Swipe up
-                            current_gesture_mode = Gesture_Modes.HAND_SWIPE_UP;
-                        }
-                        else if (swipe_direction.y < 0)
-                        {
-                            // Swipe down
-                            current_gesture_mode = Gesture_Modes.HAND_SWIPE_DOWN;
+                            CURRENT_SWIPE_MODES  = Swipe_Modes.SWIPE_LEFT;
                         }
                         else
                         {

@@ -407,8 +407,8 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
-  orthographic: 0
-  orthographic size: 5
+  orthographic: 1
+  orthographic size: 15
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -2234,6 +2234,7 @@ GameObject:
   - component: {fileID: 2086467834}
   - component: {fileID: 2086467835}
   - component: {fileID: 2086467838}
+  - component: {fileID: 2086467839}
   m_Layer: 0
   m_Name: Script_Manager
   m_TagString: Untagged
@@ -2371,6 +2372,23 @@ MonoBehaviour:
   gesture_notification_panel_root_object: {fileID: 1439124812}
   gesture_notification_image: {fileID: 1179454502}
   gesture_notification_text: {fileID: 1268760080}
+--- !u!114 &2086467839
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2086467831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: deb056729596444639064386fe692886, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  main_camera: {fileID: 0}
+  first_click_mouse_position: {x: 0, y: 0, z: 0}
+  current_mouse_position: {x: 0, y: 0, z: 0}
+  first_click_scene: 0
+  initial_camera_position: {x: 0, y: 0, z: 0}
 --- !u!1 &2143182331
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,7 +12,8 @@ public class UI_Process : MonoBehaviour
     public  Gesture_Recognition         gesture_recognition;
     private bool                        right_hand_detected = false;
     private bool                        left_hand_detected = false;
-
+    public  Text                        target_counter_text;
+    public  Text                        detected_target_counter_text;
     // Gesture notification panel
     public  GameObject                  gesture_notification_panel_root_object;
     public  Image                       gesture_notification_image;
@@ -140,5 +141,10 @@ public class UI_Process : MonoBehaviour
 
         gesture_recognition_panel_is_active = false;
         gesture_notification_panel_root_object.SetActive(false);
+    }
+
+    public void Set_Target_Counter(int value)
+    {
+        target_counter_text.text = value.ToString();
     }
 }

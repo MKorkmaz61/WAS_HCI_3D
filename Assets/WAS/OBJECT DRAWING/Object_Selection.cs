@@ -2,48 +2,59 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+public enum Object_Color
+{
+    GREEN,
+    RED,
+    YELLOW
+}
+
 public class Object_Selection : MonoBehaviour
 {
 
-    public bool                object_selection_mode = false ;
-    public GameObject          selected_object       = null  ;
-    public Vector3             inital_position               ;
-    public Gesture_Recognition current_gesture_recognition   ;
-
-    //!< Distance calculations from object
-    public GameObject red_object;
-
-    public float red_index_finger_distance;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        current_gesture_recognition = gameObject.GetComponent<Gesture_Recognition>();
-    }
+    public float         object_index_finger_distance = 0f;
+    public Object_Color  curren_object_color          = Object_Color.RED;
+    public LineRenderer  target_line_renderer         = null;
 
     // Update is called once per frame
-    void LateUpdate()
+    void Update()
     {
-        red_index_finger_distance    = Vector3.Distance(red_object.transform.position, current_gesture_recognition.INDEX_FINGER_POS);
+        GameObject index_finger_object = GameObject.Find("Bip01 R Finger12");
 
-        if (red_index_finger_distance <= 2f)
+        if (index_finger_object != null)
         {
-            object_selection_mode = true;
-            selected_object       = red_object;
+            object_index_finger_distance = Vector3.Distance(index_finger_object.transform.position, gameObject.transform.position);
+        }
+        else
+        {
+            object_index_finger_distance = 100;
         }
 
-        if (object_selection_mode == true && selected_object != null)
+        if (object_index_finger_distance <= 1.5f && target_line_renderer != null)
         {
-            selected_object.transform.position = current_gesture_recognition.INDEX_FINGER_POS;
+            switch (curren_object_color)
+            {
+                case Object_Color.GREEN:
+                    {
+                        target_line_renderer.material.color = Color.green;
+                        
+                        break;
+                    }
+                case Object_Color.RED:
+                    {
+                        target_line_renderer.material.color = Color.red;
+
+                        break;
+                    }
+                case Object_Color.YELLOW:
+                    {
+                        target_line_renderer.material.color = Color.yellow;
+
+                        break;
+                    }
+            }
+
         }
-    }
-
-    public void Draw_Sphere_From_Selected_Object()
-    {
-        object_selection_mode              = false;
-        selected_object.transform.position = inital_position;
-
-
-
     }
 }

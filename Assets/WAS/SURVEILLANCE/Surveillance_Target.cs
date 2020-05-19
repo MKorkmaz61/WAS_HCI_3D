@@ -17,3 +17,9 @@ public enum Target_Type
     TARGET_CIRCLE,
     TARGET_RECTANGULAR
 }
+
+public enum Target_Discovery_Type
+{
+    FORWARD,
+    BACKWARD
+}

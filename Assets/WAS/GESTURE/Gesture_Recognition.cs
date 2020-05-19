@@ -50,6 +50,8 @@ public class Gesture_Recognition : MonoBehaviour
     public double                RADIUS                     ;
     public Vector3               CENTER_POINT               ;
     public float                 CIRCLE_PROGRESS            ;
+    public Gesture.GestureState  CIRCLE_GESTURE_STATE       ;
+    public bool                  CIRCLE_DRAWN       = false ;        
     #endregion
 
     #region TYPE SCREEN TAP VARIABLES
@@ -108,21 +110,21 @@ public class Gesture_Recognition : MonoBehaviour
                     {
                         // IF gesture type is swipe
 
-                        SwipeGesture swipe_gesture    = new SwipeGesture(gesture);
-                        Vector       swipe_direction  = swipe_gesture.Direction;
+                        SwipeGesture swipe_gesture = new SwipeGesture(gesture);
+                        Vector swipe_direction = swipe_gesture.Direction;
 
                         // Controlling x axis
                         if (swipe_direction.x > 0)
                         {
                             // Swipe right
                             current_gesture_mode = Gesture_Modes.HAND_SWIPE_RIGHT;
-                            CURRENT_SWIPE_MODES  = Swipe_Modes.SWIPE_RIGHT; 
+                            CURRENT_SWIPE_MODES = Swipe_Modes.SWIPE_RIGHT;
                         }
                         else if (swipe_direction.x < 0)
                         {
                             // Swipe left
                             current_gesture_mode = Gesture_Modes.HAND_SWIPE_LEFT;
-                            CURRENT_SWIPE_MODES  = Swipe_Modes.SWIPE_LEFT;
+                            CURRENT_SWIPE_MODES = Swipe_Modes.SWIPE_LEFT;
                         }
                         else
                         {
@@ -130,7 +132,15 @@ public class Gesture_Recognition : MonoBehaviour
                         }
 
                         // type swipe is gonna be actve
-                        TYPE_SWIPE_ACTIVE = true;
+                        // check if the thumb finger is active
+                        var hand_list = swipe_gesture.Hands;
+
+                        var fingers = leap_motion_frame.Fingers;
+
+                        if (hand_list[0].IsRight == true && fingers[0].Type == Finger.FingerType.TYPE_THUMB)
+                        {
+                            TYPE_SWIPE_ACTIVE = true;
+                        }
 
                         break;
                     }
@@ -147,9 +157,10 @@ public class Gesture_Recognition : MonoBehaviour
                         CircleGesture circle_gesture = new CircleGesture(gesture);
 
                         // Crucial parameters such as radius, speed, turn type
-                        RADIUS          = circle_gesture.Radius / 100;
-                        CENTER_POINT    = GameObject.Find("index/bone1").transform.position;
-                        CIRCLE_PROGRESS = circle_gesture.Progress;
+                        RADIUS                  = circle_gesture.Radius / 20;
+                        CENTER_POINT            = GameObject.Find("index/bone1").transform.position;
+                        CIRCLE_PROGRESS         = circle_gesture.Progress;
+                        CIRCLE_GESTURE_STATE    = circle_gesture.State;
 
                         // Circle dir.
                         if (circle_gesture.Pointable.Direction.AngleTo(circle_gesture.Normal) <= Math.PI / 2)
@@ -161,8 +172,15 @@ public class Gesture_Recognition : MonoBehaviour
                             CIRCLE_DIR_MODE = Circle_Direction_Mode.COUNTERCLOCKWISE;
                         }
 
-                        // Type circle flag is gonna be active
-                        TYPE_CIRCLE_ACTIVE = true;
+                        var hand_list = circle_gesture.Hands;
+
+                        var fingers = leap_motion_frame.Fingers;
+
+                        if (hand_list[0].IsRight == true && fingers[0].Type == Finger.FingerType.TYPE_INDEX)
+                        {
+                            // Type circle flag is gonna be active
+                            TYPE_CIRCLE_ACTIVE = true;
+                        }
 
                         // current catched gesture is gonna be circle
                         current_gesture_mode = Gesture_Modes.HAND_CIRCLE;

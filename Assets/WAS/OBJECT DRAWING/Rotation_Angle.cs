@@ -26,36 +26,31 @@ public class Rotation_Angle : MonoBehaviour {
 
         if (GameObject.Find("Bip01 R Finger057") != null)
         {
-
             pinkyVector = GameObject.Find("Bip01 R Finger057").transform.position;
         }
+        else
+        {
+            Color_Selection_Object.transform.position = menuVector;
+        }
 
-        Frame frame = Gesture_Recognition.Instance.leap_motion_controller.Frame();
-        Hand left=frame.Hands.Leftmost;
-
-
+        Frame frame  = Gesture_Recognition.Instance.leap_motion_controller.Frame();
+        Hand  left   = frame.Hands.Leftmost;
 
         if (left.IsLeft)
         {
-
-
             rotation = left.Basis.xBasis.ToFloatArray();
 
-            if (rotation[1] <= -0.85f)
+            if (rotation[1] <= -0.65f)
             {
 
                 flag = true;
 				pinkyVector.x += 1f;
                 pinkyVector.y += 1.4f;
                 Color_Selection_Object.transform.position = pinkyVector;
-               
-                
-
             }
 
             else
             {
-
                 flag = false;
                 Color_Selection_Object.transform.position = menuVector;
             }
@@ -66,16 +61,6 @@ public class Rotation_Angle : MonoBehaviour {
         {
             flag = false;
 
-            if (object_selection.object_selection_mode == false)
-            {
-                Color_Selection_Object.transform.position = menuVector;
-            }
-
         }
-
-
-
-
-
     }
 }

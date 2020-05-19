@@ -57,8 +57,8 @@ public class Mouse_Touch_Process : MonoBehaviour
                 current_mouse_position = Input.mousePosition;
 
                 // subtraction two variables, getting x axis
-                float drag_to_move_x_axis = (first_click_mouse_position - current_mouse_position).x / 50f;
-                float drag_to_move_y_axis = (first_click_mouse_position - current_mouse_position).y / 50f;
+                float drag_to_move_x_axis = (first_click_mouse_position - current_mouse_position).x / 30f;
+                float drag_to_move_y_axis = (first_click_mouse_position - current_mouse_position).y / 30f;
 
                 main_camera.transform.position = new Vector3(main_camera.transform.position.x + drag_to_move_x_axis,
                                                              main_camera.transform.position.y + drag_to_move_y_axis,

@@ -24,6 +24,13 @@ public class UI_Process : MonoBehaviour
     // Notification Queue
     private Queue<Gesture_Notification> gesture_notification_panel_queue;
 
+    // External Notfication Panel
+    public  GameObject                  external_notification_root_object;
+    public  Text                        external_notification_text;
+    private Queue<String>               external_notification_queue;
+    private IEnumerator                 external_notification_panel_coroutine;
+    private bool                        external_notification_panel_is_active = false;
+    
     // Start is called before the first frame update
     private void Start()
     {
@@ -35,6 +42,9 @@ public class UI_Process : MonoBehaviour
 
         // set active is going to be false
         gesture_notification_panel_root_object.SetActive(false);
+
+        // set active is going to be false
+        external_notification_root_object.SetActive(false);
     }
 
     // Update is called once per frame
@@ -43,7 +53,7 @@ public class UI_Process : MonoBehaviour
         try
         {
             // Update clock
-            clock_type_text.text = DateTime.Now.Hour.ToString() + ":" + DateTime.Now.Minute.ToString();
+            clock_type_text.text = Get_Current_Clock();
 
             // to find detected hands, all boolean vars are going to be false.
             right_hand_detected = false;
@@ -75,6 +85,14 @@ public class UI_Process : MonoBehaviour
                 gesture_recognition_panel_coroutine      = Notification_Panel_Coroutine(target_notification);
 
                 StartCoroutine(gesture_recognition_panel_coroutine);
+            }
+
+            if (external_notification_queue.Count > 0 && external_notification_panel_is_active == false)
+            {
+                String to_bo_shown_text               = external_notification_queue.Dequeue();
+                external_notification_panel_coroutine = External_Notification_Coroutine(to_bo_shown_text);
+
+                StartCoroutine(external_notification_panel_coroutine);
             }
 
         }
@@ -146,5 +164,60 @@ public class UI_Process : MonoBehaviour
     public void Set_Target_Counter(int value)
     {
         target_counter_text.text = value.ToString();
+    }
+
+    public void Start_External_Notification_Panel(String notification_text)
+    {
+        if (external_notification_panel_is_active == false && external_notification_queue.Count == 0)
+        {
+            external_notification_panel_coroutine = External_Notification_Coroutine(notification_text);
+            StartCoroutine(external_notification_panel_coroutine);
+        }
+        else
+        {
+            // add to queue
+            external_notification_queue.Enqueue(notification_text);
+        }
+    }
+
+    private IEnumerator External_Notification_Coroutine(String notification_text)
+    {
+        external_notification_panel_is_active = true;
+        external_notification_root_object.SetActive(true);
+        external_notification_text.text = notification_text;
+
+        // wait a second
+        yield return new WaitForSeconds(1f);
+
+        external_notification_panel_is_active = false;
+        external_notification_root_object.SetActive(false);
+    }
+
+    private String Get_Current_Clock()
+    {
+        String hour   = "";
+        String minute = "";
+
+        // set hour
+        if (DateTime.Now.Hour >= 10)
+        {
+            hour = DateTime.Now.Hour.ToString();
+        }
+        else
+        {
+            hour = "0" + DateTime.Now.Hour;
+        }
+
+        // set minute
+        if (DateTime.Now.Minute >= 10)
+        {
+            minute = DateTime.Now.Minute.ToString();
+        }
+        else
+        {
+            minute = "0" + DateTime.Now.Minute.ToString();
+        }
+
+        return hour + ":" + minute;
     }
 }

@@ -3998,6 +3998,8 @@ MonoBehaviour:
   gesture_notification_panel_root_object: {fileID: 1439124812}
   gesture_notification_image: {fileID: 1179454502}
   gesture_notification_text: {fileID: 1268760080}
+  external_notification_root_object: {fileID: 553484489}
+  external_notification_text: {fileID: 535886058}
 --- !u!114 &2086467839
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -10,6 +10,10 @@ public class Detected_Object_Behaviour : MonoBehaviour
     private Vector3     target_object_point               ;
     private bool        transition_completed_flag = false ;
     public  float       mouse_object_distance     = 0f    ;
+
+    // detect double click 
+    private int         click_count               = 0     ;
+    private float       neccessary_clickable_time = 2f    ;
     
 
     // Use this for initialization
@@ -35,15 +39,28 @@ public class Detected_Object_Behaviour : MonoBehaviour
         Vector3 mouse_world_position  = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mouse_object_distance         = Vector3.Distance(mouse_world_position, gameObject.transform.position);
 
-        if (mouse_object_distance < 2f && Input.GetMouseButtonDown(0) == true)
+        if (mouse_object_distance < 3f && Input.GetMouseButtonDown(0) == true)
         {
-            Debug.Log("Hit");
+        	click_count++;
         }
-    }
+        else 
+        {
+            // start reset timer
+            neccessary_clickable_time -= Time.deltaTime;
 
-    private void OnMouseEnter()
-    {
-        Debug.Log("Hit");
+            if (neccessary_clickable_time <= 0)
+            {
+                click_count = 0;
+                neccessary_clickable_time = 2f;
+            }
+        }
+
+       	// check double click
+        if(click_count >= 2)
+        {
+        	Open_Target_Determination_Panel();
+        	click_count = 0;
+        }
     }
 
     private void Take_Attention_User()
@@ -67,5 +84,10 @@ public class Detected_Object_Behaviour : MonoBehaviour
             }
         }
 
+    }
+
+    private void Open_Target_Determination_Panel()
+    {
+        Debug.Log("Hit the road jack");
     }
 }

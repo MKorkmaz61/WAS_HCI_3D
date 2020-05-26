@@ -395,7 +395,7 @@ GameObject:
   - component: {fileID: 211438268}
   m_Layer: 0
   m_Name: diagonal_arrow 2
-  m_TagString: Untagged
+  m_TagString: AI_Object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1199,7 +1199,7 @@ GameObject:
   - component: {fileID: 605167592}
   m_Layer: 0
   m_Name: diagonal_arrow
-  m_TagString: Untagged
+  m_TagString: AI_Object
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

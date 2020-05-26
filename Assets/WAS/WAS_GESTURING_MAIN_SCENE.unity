@@ -994,8 +994,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 36.05, y: -10.2}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 34.91, y: -10.2}
+  m_SizeDelta: {x: 215.39, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &535886058
 MonoBehaviour:
@@ -2282,6 +2282,7 @@ GameObject:
   - component: {fileID: 1062538513}
   - component: {fileID: 1062538515}
   - component: {fileID: 1062538514}
+  - component: {fileID: 1062538516}
   m_Layer: 5
   m_Name: tick_64
   m_TagString: Untagged
@@ -2343,6 +2344,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1062538512}
   m_CullTransparentMesh: 0
+--- !u!114 &1062538516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1062538512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2086467840}
+          m_MethodName: Add_Detected_Object_to_List
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  delegates: []
 --- !u!1 &1086754420
 GameObject:
   m_ObjectHideFlags: 0
@@ -2963,7 +2993,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 74.31, y: -2.4}
+  m_AnchoredPosition: {x: 50.2, y: -2.4}
   m_SizeDelta: {x: 35, y: 35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1260957801
@@ -3168,6 +3198,7 @@ GameObject:
   - component: {fileID: 1413951195}
   - component: {fileID: 1413951197}
   - component: {fileID: 1413951196}
+  - component: {fileID: 1413951198}
   m_Layer: 5
   m_Name: cancel_64
   m_TagString: Untagged
@@ -3229,6 +3260,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1413951194}
   m_CullTransparentMesh: 0
+--- !u!114 &1413951198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1413951194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2086467840}
+          m_MethodName: Cancel_AI_Support_Process
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  delegates: []
 --- !u!1 &1418819745
 GameObject:
   m_ObjectHideFlags: 0
@@ -4220,6 +4280,7 @@ MonoBehaviour:
   gesture_notification_text: {fileID: 1268760080}
   external_notification_root_object: {fileID: 553484489}
   external_notification_text: {fileID: 535886058}
+  AI_support_panel: {fileID: 133178276}
 --- !u!114 &2086467839
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4253,6 +4314,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target_objects: []
   current_target_index: 0
+  UI_process_handle: {fileID: 0}
+  target_prefab: {fileID: 848442535429606969, guid: 65c4ac3511a0b423aad6b6bde54a6b0b,
+    type: 3}
+  dynamic_AI_object: {fileID: 0}
 --- !u!1 &2143182331
 GameObject:
   m_ObjectHideFlags: 0

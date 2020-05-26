@@ -30,6 +30,9 @@ public class UI_Process : MonoBehaviour
     private Queue<String>               external_notification_queue;
     private IEnumerator                 external_notification_panel_coroutine;
     private bool                        external_notification_panel_is_active = false;
+
+    // AI support panel
+    public  GameObject                  AI_support_panel;
     
     // Start is called before the first frame update
     private void Start()
@@ -40,11 +43,17 @@ public class UI_Process : MonoBehaviour
         // memory alloc for queue
         gesture_notification_panel_queue = new Queue<Gesture_Notification>();
 
+        // memory alloc for queue
+        external_notification_queue      = new Queue<String>();
+
         // set active is going to be false
         gesture_notification_panel_root_object.SetActive(false);
 
         // set active is going to be false
         external_notification_root_object.SetActive(false);
+
+        // set active is going to be false
+        AI_support_panel.SetActive(false);
     }
 
     // Update is called once per frame
@@ -98,7 +107,7 @@ public class UI_Process : MonoBehaviour
         }
         catch (Exception ex)
         {
-            Debug.Log("Exception occured. " + ex.Message);
+            // TO DO
         }
     }
 

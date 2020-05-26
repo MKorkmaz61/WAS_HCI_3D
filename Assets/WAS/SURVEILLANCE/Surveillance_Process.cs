@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,8 +10,10 @@ public class Surveillance_Process : MonoBehaviour
     private bool          target_transition_is_active  = false  ;
     private Camera        main_camera                           ;
     private Vector3       next_target_position                  ;
-    private UI_Process    UI_process_handle                     ;
- 
+    public  UI_Process    UI_process_handle                     ;
+    public  GameObject    target_prefab                         ;
+    public  GameObject    dynamic_AI_object                     ;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -91,5 +94,31 @@ public class Surveillance_Process : MonoBehaviour
         }
 
         StartCoroutine(Reset_Coroutine());
+    }
+
+    public void Add_Detected_Object_to_List()
+    {
+        GameObject dynamic_target_object = Instantiate(target_prefab, dynamic_AI_object.transform.position, Quaternion.identity);
+        dynamic_target_object.tag        = "target";
+
+        Array.Resize(ref target_objects, target_objects.Length + 1);
+        target_objects[target_objects.Length - 1] = dynamic_target_object;
+
+        UI_process_handle.Set_Target_Counter(target_objects.Length);
+
+        UI_process_handle.Start_External_Notification_Panel("New target has been added");
+
+        UI_process_handle.AI_support_panel.SetActive(false);
+
+        dynamic_AI_object.SetActive(false);
+    }
+
+    public void Cancel_AI_Support_Process()
+    {
+        UI_process_handle.AI_support_panel.SetActive(false);
+
+        dynamic_AI_object.SetActive(false);
+
+        UI_process_handle.Start_External_Notification_Panel("AI target has been ignored");
     }
 }

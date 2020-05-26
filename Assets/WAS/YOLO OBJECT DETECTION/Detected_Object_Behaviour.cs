@@ -9,6 +9,8 @@ public class Detected_Object_Behaviour : MonoBehaviour
     private float       object_height_sink        = 0.1f  ;
     private Vector3     target_object_point               ;
     private bool        transition_completed_flag = false ;
+    public  float       mouse_object_distance     = 0f    ;
+    
 
     // Use this for initialization
     private void Start()
@@ -23,12 +25,25 @@ public class Detected_Object_Behaviour : MonoBehaviour
         // alert user
         Take_Attention_User();
 
+        // Target detector
+        Target_Detector_Process();
+
     }
 
     private void Target_Detector_Process()
     {
+        Vector3 mouse_world_position  = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mouse_object_distance         = Vector3.Distance(mouse_world_position, gameObject.transform.position);
 
+        if (mouse_object_distance < 2f && Input.GetMouseButtonDown(0) == true)
+        {
+            Debug.Log("Hit");
+        }
+    }
 
+    private void OnMouseEnter()
+    {
+        Debug.Log("Hit");
     }
 
     private void Take_Attention_User()

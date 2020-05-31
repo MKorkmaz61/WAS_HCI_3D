@@ -488,6 +488,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mouse_object_distance: 0
+  search_object_prefab: {fileID: 4685427352496178983, guid: e6cab54d46ead42d8beacffb7debfca8,
+    type: 3}
 --- !u!212 &211438269
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1356,6 +1358,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mouse_object_distance: 0
+  search_object_prefab: {fileID: 4685427352496178983, guid: e6cab54d46ead42d8beacffb7debfca8,
+    type: 3}
 --- !u!1 &617157416
 GameObject:
   m_ObjectHideFlags: 0

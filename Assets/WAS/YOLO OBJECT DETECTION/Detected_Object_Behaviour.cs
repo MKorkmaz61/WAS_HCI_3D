@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Detected_Object_Behaviour : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class Detected_Object_Behaviour : MonoBehaviour
     private int                     click_count               = 0     ;
     private float                   neccessary_clickable_time = 2f    ;
     private Surveillance_Process    surveillance_process_handle       ;
+    public  GameObject              search_object_prefab              ;
 
     // Use this for initialization
     private void Start()
@@ -22,6 +24,9 @@ public class Detected_Object_Behaviour : MonoBehaviour
         initial_point               = gameObject.transform.position;
         target_object_point         = new Vector3(initial_point.x, initial_point.y - 3f, initial_point.z);
         surveillance_process_handle = GameObject.Find("Script_Manager").GetComponent<Surveillance_Process>();
+
+        // Draw bounds
+        Draw_Line_From_Points();
     }
 
     // Update is called once per frame
@@ -32,7 +37,6 @@ public class Detected_Object_Behaviour : MonoBehaviour
 
         // Target detector
         Target_Detector_Process();
-
     }
 
     private void Target_Detector_Process()
@@ -92,4 +96,11 @@ public class Detected_Object_Behaviour : MonoBehaviour
         surveillance_process_handle.dynamic_AI_object = gameObject;
         surveillance_process_handle.UI_process_handle.AI_support_panel.SetActive(true);
     }
+
+    private void Draw_Line_From_Points()
+    {
+        GameObject game_object = Instantiate(search_object_prefab, new Vector3(gameObject.transform.position.x,gameObject.transform.position.y-7f,gameObject.transform.position.z), Quaternion.identity);
+        game_object.transform.Rotate(new Vector3(0, 0, 22f));
+    }
+
 }

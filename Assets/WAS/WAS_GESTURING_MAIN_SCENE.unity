@@ -4155,6 +4155,7 @@ GameObject:
   - component: {fileID: 2086467838}
   - component: {fileID: 2086467839}
   - component: {fileID: 2086467840}
+  - component: {fileID: 2086467835}
   m_Layer: 0
   m_Name: Script_Manager
   m_TagString: Untagged
@@ -4212,6 +4213,22 @@ MonoBehaviour:
   red_color_object: {fileID: 804375357}
   green_color_object: {fileID: 1253522030}
   yellow_color_object: {fileID: 235878195}
+--- !u!114 &2086467835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2086467831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24f491896ed8a41d6bfca1cbf7fa299c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nav_path_algorithm_is_active: 0
+  UI_process_handle: {fileID: 0}
+  root_prefab: {fileID: 4454922395390854513, guid: 0216f25fdbea3477ea4719e4ebab65b3,
+    type: 3}
 --- !u!114 &2086467836
 MonoBehaviour:
   m_ObjectHideFlags: 0
